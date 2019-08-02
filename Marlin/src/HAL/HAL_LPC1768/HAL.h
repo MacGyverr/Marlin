@@ -128,7 +128,7 @@ uint8_t spiRec(uint32_t chan);
 // ADC API
 //
 
-#define ADC_MEDIAN_FILTER_SIZE (23) // Higher values increase step delay (phase shift),
+#define ADC_MEDIAN_FILTER_SIZE (5) // Higher values increase step delay (phase shift),
                                     // (ADC_MEDIAN_FILTER_SIZE + 1) / 2 sample step delay (12 samples @ 500Hz: 24ms phase shift)
                                     // Memory usage per ADC channel (bytes): (6 * ADC_MEDIAN_FILTER_SIZE) + 16
                                     // 8 * ((6 * 23) + 16 ) = 1232 Bytes for 8 channels

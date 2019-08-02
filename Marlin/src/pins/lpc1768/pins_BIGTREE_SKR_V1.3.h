@@ -49,7 +49,7 @@
 // Z Probe (when not Z_MIN_PIN)
 //
 #ifndef Z_MIN_PROBE_PIN
-  #define Z_MIN_PROBE_PIN  P1_24
+  #define Z_MIN_PROBE_PIN  P1_25
 #endif
 
 //
@@ -178,81 +178,45 @@
  *              _____                                             _____
  *          NC | · · | GND                                    5V | · · | GND
  *       RESET | · · | 1.31(SD_DETECT)             (LCD_D7) 1.23 | · · | 1.22 (LCD_D6)
- *  (MOSI)0.18 | · · | 3.25(BTN_EN2)               (LCD_D5) 1.21 | · · | 1.20 (LCD_D4)
+ *  (MOSI)0.18 | · · | 3.25(BTN_EN2)               (LCD_D5) 1.21 | · ·   1.20 (LCD_D4)
  * (SD_SS)0.16 | · · | 3.26(BTN_EN1)               (LCD_RS) 1.19 | · · | 1.18 (LCD_EN)
  *   (SCK)0.15 | · · | 0.17(MISO)                 (BTN_ENC) 0.28 | · · | 1.30 (BEEPER)
  *              -----                                             -----
  *              EXP2                                              EXP1
  */
-#if HAS_SPI_LCD
-  #define BEEPER_PIN       P1_30   // (37) not 5V tolerant
+ #if HAS_SPI_LCD
+  #if ENABLED(ZONESTAR_LCD)
+/**
+ *                _____
+ *            5V | · · | GND
+ *       D4 1.23 | · · | 1.22
+ *       D5 1.21 | · ·   1.20 LCD_RS
+ *       D6 1.19 | · · | 1.18 LCD_EN
+ *       D7 0.28 | · · | 1.30 ADC_KEYPAD
+ *                -----
+ *                EXP1
+ *                _____
+ *            D7 | · · | ADC_KEYPAD
+ *            D6 | · · | LCD_EN
+ *            D5 | · ·   LCD_RS
+ *            D4 | · · | NC
+ *           +5V | · · | GND
+ *                -----
+ *             ZONESTAR LCD
+ */
+    #define LCD_PINS_RS      P1_20
+    #define LCD_PINS_ENABLE  P1_18
+    #define LCD_PINS_D4      P1_23
+    #define LCD_PINS_D5      P1_21
+    #define LCD_PINS_D6      P1_19
+    #define LCD_PINS_D7      P0_28
+    #define ADC_KEYPAD_PIN   4 // ACD Channel 4 = P1_30, not 5V tolerant
+  #endif // ZONESTAR_LCD
+
+  //#define BEEPER_PIN       P1_30   // (37) not 5V tolerant
   #define BTN_ENC          P0_28   // (58) open-drain
 
-  #if ENABLED(CR10_STOCKDISPLAY)
-    #define LCD_PINS_RS    P1_22
 
-    #define BTN_EN1        P1_18
-    #define BTN_EN2        P1_20
-
-    #define LCD_PINS_ENABLE P1_23
-    #define LCD_PINS_D4    P1_21
-
-  #else
-    #define LCD_PINS_RS    P1_19
-
-    #define BTN_EN1        P3_26   // (31) J3-2 & AUX-4
-    #define BTN_EN2        P3_25   // (33) J3-4 & AUX-4
-
-    #define LCD_PINS_ENABLE P1_18
-    #define LCD_PINS_D4    P1_20
-
-    #define LCD_SDSS       P0_16   // (16) J3-7 & AUX-4
-    #define SD_DETECT_PIN  P1_31   // (49) (NOT 5V tolerant)
-
-    #if ENABLED(FYSETC_MINI_12864)
-      #define DOGLCD_CS    P1_18
-      #define DOGLCD_A0    P1_19
-      #define DOGLCD_SCK   P0_15
-      #define DOGLCD_MOSI  P0_18
-      #define FORCE_SOFT_SPI
-
-      #define LCD_BACKLIGHT_PIN -1
-
-      #define FORCE_SOFT_SPI      // Use this if default of hardware SPI causes display problems
-                                  //   results in LCD soft SPI mode 3, SD soft SPI mode 0
-
-      #define LCD_RESET_PIN P1_20   // Must be high or open for LCD to operate normally.
-
-      #if EITHER(FYSETC_MINI_12864_1_2, FYSETC_MINI_12864_2_0)
-        #ifndef RGB_LED_R_PIN
-          #define RGB_LED_R_PIN P1_21
-        #endif
-        #ifndef RGB_LED_G_PIN
-          #define RGB_LED_G_PIN P1_22
-        #endif
-        #ifndef RGB_LED_B_PIN
-          #define RGB_LED_B_PIN P1_23
-        #endif
-      #elif ENABLED(FYSETC_MINI_12864_2_1)
-        #define NEOPIXEL_PIN    P1_21
-      #endif
-
-    #else // !FYSETC_MINI_12864
-
-      #if ENABLED(MKS_MINI_12864)
-        #define DOGLCD_CS  P1_21
-        #define DOGLCD_A0  P1_22
-      #endif
-
-      #if ENABLED(ULTIPANEL)
-        #define LCD_PINS_D5 P1_21
-        #define LCD_PINS_D6 P1_22
-        #define LCD_PINS_D7 P1_23
-      #endif
-
-    #endif // !FYSETC_MINI_12864
-
-  #endif
 
 #endif // HAS_SPI_LCD
 
