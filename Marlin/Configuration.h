@@ -474,23 +474,9 @@
   // If you are using a pre-configured hotend then you can use one of the value sets by uncommenting it
 
 // ANET A4
-  #define  DEFAULT_Kp 30.48
-  #define  DEFAULT_Ki 2.71
-  #define  DEFAULT_Kd 85.52						   
-  // Ultimaker
-//  #define DEFAULT_Kp 22.2
-//  #define DEFAULT_Ki 1.08
-//  #define DEFAULT_Kd 114
-
-  // MakerGear
-  //#define DEFAULT_Kp 7.0
-  //#define DEFAULT_Ki 0.1
-  //#define DEFAULT_Kd 12
-
-  // Mendel Parts V9 on 12V
-  //#define DEFAULT_Kp 63.0
-  //#define DEFAULT_Ki 2.25
-  //#define DEFAULT_Kd 440
+#define DEFAULT_Kp 31.95
+#define DEFAULT_Ki 3.02
+#define DEFAULT_Kd 84.45
 
 #endif // PIDTEMP
 
@@ -528,22 +514,11 @@
   //#define PID_BED_DEBUG // Sends debug data to the serial port.
 
 // ANET A4 220mm Heatbed
-  #define  DEFAULT_bedKp 296.07
-  #define  DEFAULT_bedKi 43.02
-  #define  DEFAULT_bedKd 509.36							   
-  //120V 250W silicone heater into 4mm borosilicate (MendelMax 1.5+)
-  //from FOPDT model - kp=.39 Tp=405 Tdead=66, Tc set to 79.2, aggressive factor of .15 (vs .1, 1, 10)
-  //#define DEFAULT_bedKp 10.00
-  //#define DEFAULT_bedKi .023
-  //#define DEFAULT_bedKd 305.4
+#define DEFAULT_bedKp 187.70
+#define DEFAULT_bedKi 33.01
+#define DEFAULT_bedKd 711.44
 
-  //120V 250W silicone heater into 4mm borosilicate (MendelMax 1.5+)
-  //from pidautotune
-  //#define DEFAULT_bedKp 97.1
-  //#define DEFAULT_bedKi 1.41
-  //#define DEFAULT_bedKd 1675.16
-
-  // FIND YOUR OWN: "M303 E-1 C8 S90" to run autotune on the bed at 90 degreesC for 8 cycles.
+  // FIND YOUR OWN: "M303 E-1 C10 S95" to run autotune on the bed at 95 degreesC for 10 cycles.
 #endif // PIDTEMPBED
 
 // @section extruder
@@ -651,17 +626,17 @@
   // Horizontal distance from the center of the smooth rod to the center of the universal joints on the carriages.
   #define DELTA_CARRIAGE_OFFSET 19.0    // (mm)
   // Horizontal distance bridged by diagonal push rods when effector is centered.
-  //#define DELTA_RADIUS (DELTA_SMOOTH_ROD_OFFSET-(DELTA_EFFECTOR_OFFSET)-(DELTA_CARRIAGE_OFFSET))  
-  #define DELTA_RADIUS 112.79              // (112.6mm) Get this value from G33 auto calibrate
+  //#define DELTA_RADIUS (DELTA_SMOOTH_ROD_OFFSET-(DELTA_EFFECTOR_OFFSET)-(DELTA_CARRIAGE_OFFSET))  //this is the way it should be, but it doesn't work no matter how accurate you make your measurements
+  #define DELTA_RADIUS 113.67              // (mm) Get this value from G33 auto calibrate
   // Distance between bed and nozzle Z home position
-  #define DELTA_HEIGHT 194.0             // (242mm) 
+  #define DELTA_HEIGHT 192.12             // (mm)  Get this value from G33 auto calibrate
 
-  #define DELTA_ENDSTOP_ADJ { -0.053, -0.862, 0.0 } // Get these values from G33 auto calibrate
-
+  #define DELTA_ENDSTOP_ADJ { -0.252, -0.935, 0.0 } // Get these values from G33 auto calibrate
+  
   // Trim adjustments for individual towers
   // tower angle corrections for X and Y tower / rotate XYZ so Z tower angle = 0
   // measured in degrees anticlockwise looking from above the printer
-  #define DELTA_TOWER_ANGLE_TRIM { 0.408, -0.219, -0.189 } // Get these values from G33 auto calibrate
+  #define DELTA_TOWER_ANGLE_TRIM { 0.147, -0.91, -0.56 } // Get these values from G33 auto calibrate
 
   // Delta radius and diagonal rod adjustments (mm)
   //#define DELTA_RADIUS_TRIM_TOWER { 0.0, 0.0, 0.0 }
@@ -802,7 +777,7 @@
 // delta speeds must be the same on xyz
 #define DEFAULT_XYZ_STEPS_PER_UNIT ((XYZ_FULL_STEPS_PER_ROTATION) * (XYZ_MICROSTEPS) / double(XYZ_BELT_PITCH) / double(XYZ_PULLEY_TEETH))
 //#define DEFAULT_AXIS_STEPS_PER_UNIT   { DEFAULT_XYZ_STEPS_PER_UNIT, DEFAULT_XYZ_STEPS_PER_UNIT, DEFAULT_XYZ_STEPS_PER_UNIT, 401.61 }  // default steps per unit for Kossel (GT2, 20 tooth)
-#define DEFAULT_AXIS_STEPS_PER_UNIT { 100.0, 100.0, 100.0, 401.61 }
+#define DEFAULT_AXIS_STEPS_PER_UNIT { 100.0, 100.0, 100.0, 434.36 }  //401.61
 
 /**
  * Default Max Feed Rate (mm/s)
@@ -869,7 +844,7 @@
  *
  * See https://github.com/synthetos/TinyG/wiki/Jerk-Controlled-Motion-Explained
  */
-#define S_CURVE_ACCELERATION   
+//#define S_CURVE_ACCELERATION
 
 //===========================================================================
 //============================= Z Probe Options =============================
@@ -1779,7 +1754,7 @@
  *
  * Use CRC checks and retries on the SD communication.
  */
-//#define SD_CHECK_AND_RETRY
+#define SD_CHECK_AND_RETRY
 
 /**
  * LCD Menu Items
