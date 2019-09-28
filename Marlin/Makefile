@@ -251,8 +251,10 @@ else ifeq ($(HARDWARE_MOTHERBOARD),1141)
 else ifeq ($(HARDWARE_MOTHERBOARD),1142)
 # Overlord/Overlord Pro
 else ifeq ($(HARDWARE_MOTHERBOARD),1143)
-# ADIMLab Granty
+# ADIMLab Gantry v1
 else ifeq ($(HARDWARE_MOTHERBOARD),1144)
+# ADIMLab Gantry v2
+else ifeq ($(HARDWARE_MOTHERBOARD),1145)
 
 #
 # RAMBo and derivatives
@@ -691,7 +693,7 @@ CXXSTANDARD = -std=gnu++11
 CDEBUG = -g$(DEBUG)
 CWARN   = -Wall -Wstrict-prototypes -Wno-packed-bitfield-compat -Wno-pragmas -Wunused-parameter
 CXXWARN = -Wall                     -Wno-packed-bitfield-compat -Wno-pragmas -Wunused-parameter
-CTUNING = -fsigned-char -funsigned-bitfields -fpack-struct -fno-exceptions \
+CTUNING = -fsigned-char -funsigned-bitfields -fno-exceptions \
           -fshort-enums -ffunction-sections -fdata-sections
 ifneq ($(HARDWARE_MOTHERBOARD),)
   CTUNING += -DMOTHERBOARD=${HARDWARE_MOTHERBOARD}
