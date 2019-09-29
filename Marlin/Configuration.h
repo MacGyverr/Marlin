@@ -75,10 +75,6 @@
 // build by the user have been successfully uploaded into firmware.
 // Author info of this build printed to the host during boot and M115
 #define STRING_CONFIG_H_AUTHOR "(MacGyverr, default config)" // Who made the changes.
-#define SHOW_BOOTSCREEN
-#define STRING_SPLASH_LINE1 SHORT_BUILD_VERSION // will be shown during bootup in line 1
-//#define STRING_SPLASH_LINE2 WEBSITE_URL         // will be shown during bootup in line 2
-#define STRING_SPLASH_LINE2 "24V A4+SKR v1.3"         // will be shown during bootup in line 2																			  
 
 /**
  * *** VENDORS PLEASE READ ***
@@ -1272,15 +1268,15 @@
   #define GRID_MAX_POINTS_Y GRID_MAX_POINTS_X
 
   // Set the boundaries for probing (where the probe can reach).
-  #define LEFT_PROBE_BED_POSITION -(DELTA_PRINTABLE_RADIUS - (MIN_PROBE_EDGE)) //shit
-  #define RIGHT_PROBE_BED_POSITION DELTA_PRINTABLE_RADIUS - (MIN_PROBE_EDGE)
-  #define FRONT_PROBE_BED_POSITION -(DELTA_PRINTABLE_RADIUS - (MIN_PROBE_EDGE))
-  #define BACK_PROBE_BED_POSITION DELTA_PRINTABLE_RADIUS - (MIN_PROBE_EDGE)
+  #define MIN_PROBE_EDGE_LEFT -(DELTA_PRINTABLE_RADIUS - (MIN_PROBE_EDGE)) //shit
+  #define MIN_PROBE_EDGE_RIGHT DELTA_PRINTABLE_RADIUS - (MIN_PROBE_EDGE)
+  #define MIN_PROBE_EDGE_FRONT -(DELTA_PRINTABLE_RADIUS - (MIN_PROBE_EDGE))
+  #define MIN_PROBE_EDGE_BACK DELTA_PRINTABLE_RADIUS - (MIN_PROBE_EDGE)
 
-  //#define LEFT_PROBE_BED_POSITION -83 //shit
-  //#define RIGHT_PROBE_BED_POSITION 83
-  //#define FRONT_PROBE_BED_POSITION -50
-  //#define BACK_PROBE_BED_POSITION 93
+  //#define MIN_PROBE_EDGE_LEFT -83 //shit
+  //#define MIN_PROBE_EDGE_RIGHT 83
+  //#define MIN_PROBE_EDGE_FRONT -50
+  //#define MIN_PROBE_EDGE_BACK 93
   // Probe along the Y axis, advancing X after each column
   //#define PROBE_Y_FIRST
 
