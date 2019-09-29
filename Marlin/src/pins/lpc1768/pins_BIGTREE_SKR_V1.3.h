@@ -22,9 +22,10 @@
 #pragma once
 
 #ifndef TARGET_LPC1768
-  #error "Oops!  Make sure you have the LPC1768 environment selected in your IDE."
+  #error "Oops! Make sure you have the LPC1768 environment selected in your IDE."
 #endif
 
+#define BOARD_INFO_NAME "BIGTREE SKR 1.3"
 
 // Ignore temp readings during development.
 //#define BOGUS_TEMPERATURE_GRACE_PERIOD 2000
@@ -177,13 +178,13 @@
  *              _____                                             _____
  *          NC | · · | GND                                    5V | · · | GND
  *       RESET | · · | 1.31(SD_DETECT)             (LCD_D7) 1.23 | · · | 1.22 (LCD_D6)
- *  (MOSI)0.18 | · · | 3.25(BTN_EN2)               (LCD_D5) 1.21 | · ·   1.20 (LCD_D4)
+ *  (MOSI)0.18 | · · | 3.25(BTN_EN2)               (LCD_D5) 1.21 | · · | 1.20 (LCD_D4)
  * (SD_SS)0.16 | · · | 3.26(BTN_EN1)               (LCD_RS) 1.19 | · · | 1.18 (LCD_EN)
  *   (SCK)0.15 | · · | 0.17(MISO)                 (BTN_ENC) 0.28 | · · | 1.30 (BEEPER)
  *              -----                                             -----
  *              EXP2                                              EXP1
  */
- #if HAS_SPI_LCD
+#if HAS_SPI_LCD
 /**   #if ENABLED(ZONESTAR_LCD)
  **
  *                _____
@@ -211,7 +212,7 @@
     #define LCD_PINS_D7      P0_28
     #define ADC_KEYPAD_PIN   4 // ACD Channel 4 = P1_30, not 5V tolerant
   #endif */// ZONESTAR_LCD
-
+  
   #define BEEPER_PIN       P1_30   // (37) not 5V tolerant
   #define BTN_ENC          P0_28   // (58) open-drain
 
